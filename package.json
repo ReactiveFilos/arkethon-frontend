@@ -6,9 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "check:errors": "ultracite check --diagnostic-level=error --max-diagnostics 150"
   },
   "dependencies": {
+    "@arkejs/client": "^2.11.2",
     "@hookform/resolvers": "^5.4.0",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -31,7 +34,9 @@
     "ddmushi": "^0.3.1",
     "lucide-react": "^0.544.0",
     "next": "16.2.6",
+    "next-auth": "^4.24.14",
     "next-themes": "^0.4.6",
+    "puedo": "^0.0.2",
     "radix-ui": "^1.5.0",
     "react": "19.1.0",
     "react-day-picker": "^10.0.1",

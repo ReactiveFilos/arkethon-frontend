@@ -1,11 +1,7 @@
-import { User } from "next-auth";
+import type { User } from "next-auth";
 import { Puedo } from "puedo";
 
 import { adminRole } from "@/lib/permission/roles/admin";
-import { agencyRole } from "@/lib/permission/roles/agency";
-import { masterSalesRole } from "@/lib/permission/roles/master-sales";
-import { reviewerRole } from "@/lib/permission/roles/reviewer";
-import { salesRole } from "@/lib/permission/roles/sales";
 import { superAdminRole } from "@/lib/permission/roles/super-admin";
 
 const permissions = {
@@ -14,14 +10,7 @@ const permissions = {
   },
 };
 
-const puedoRoles = [
-  superAdminRole,
-  adminRole,
-  masterSalesRole,
-  salesRole,
-  reviewerRole,
-  agencyRole,
-];
+const puedoRoles = [superAdminRole, adminRole];
 
 const puedo = new Puedo<User, typeof permissions>({
   accessorKey: "arke_id",

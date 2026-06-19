@@ -1,11 +1,10 @@
-import { Client, HTTPStatusCode, TToken } from "@arkejs/client";
+import { Client, HTTPStatusCode, type TToken } from "@arkejs/client";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { getSession } from "next-auth/react";
 
 import { getEnvVar } from "@/hooks/use-runtime-env";
-
-import { authOptions } from "./auth";
+import { authOptions } from "@/lib/arke/auth";
 
 function isServer() {
   return typeof window === "undefined";
@@ -28,9 +27,7 @@ export const client = new Client({
     //   return config;
     // });
     api.interceptors.response.use(
-      (response) => {
-        return response;
-      },
+      (response) => response,
       (err) => {
         if (
           err.response &&
@@ -44,7 +41,7 @@ export const client = new Client({
         }
 
         return Promise.reject(err);
-      },
+      }
     );
     return api;
   },

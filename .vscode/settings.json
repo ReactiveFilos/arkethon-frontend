@@ -1,0 +1,19 @@
+{
+  "findUnusedExports.detectCircularImports": false,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "source.removeUnusedImports": "explicit"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "files.autoSave": "onFocusChange",
+  "typescript.disableAutomaticTypeAcquisition": false,
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

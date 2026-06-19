@@ -1,8 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
-  "extends": [
-    "ultracite"
-  ],
+  "extends": ["ultracite"],
   "linter": {
     "rules": {
       "performance": {
@@ -25,15 +23,14 @@
         "useDefaultSwitchClause": "warn"
       },
       "nursery": {
-        "noShadow": "off"
+        "noShadow": "off",
+        "useConsistentTypeDefinitions": "off"
       },
       "suspicious": {
         "noConsole": {
           "level": "error",
           "options": {
-            "allow": [
-              "error"
-            ]
+            "allow": ["error"]
           }
         },
         "noUnknownAtRules": "warn",

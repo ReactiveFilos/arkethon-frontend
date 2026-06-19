@@ -1,14 +1,17 @@
-import { Client, TToken } from "@arkejs/client";
+import { Client, type TToken } from "@arkejs/client";
 import { redirect } from "next/navigation";
-import NextAuth, { getServerSession, NextAuthOptions } from "next-auth";
-import { type User as AuthUser } from "next-auth";
+import NextAuth, {
+  type User as AuthUser,
+  getServerSession,
+  type NextAuthOptions,
+} from "next-auth";
 import type { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { getEnvVar } from "@/hooks/use-runtime-env";
-import { getClient, unauthorizedClient } from "@/lib/arke";
-import puedo, { PermissionKey } from "@/lib/permission/puedo";
+import { getClient, unauthorizedClient } from "@/lib/arke/client";
 import { fetchCurrentUser } from "@/lib/arke/user";
+import puedo, { type PermissionKey } from "@/lib/permission/puedo";
 
 function decodeJWT(token: string) {
   const [, payload] = token.split(".");
@@ -28,7 +31,7 @@ async function checkTokenExpiration(token: JWT) {
 
   const response = await unauthorizedClient.auth.refreshToken(
     token.refresh_token,
-    token.refresh_token,
+    token.refresh_token
   );
 
   return { ...token, ...response.data.content };
@@ -56,7 +59,7 @@ export const authOptions: NextAuthOptions = {
               username: credentials.email,
               password: credentials.password,
             },
-            "credentials",
+            "credentials"
           );
 
           const isUserSoftDeleted = res.data.content.hidden;
@@ -102,7 +105,7 @@ export const authOptions: NextAuthOptions = {
 
       const currentUser = await fetchCurrentUser(
         token.user as AuthUser,
-        client,
+        client
       );
 
       session.user = {
@@ -112,7 +115,7 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
-    async redirect({ url, baseUrl }) {
+    redirect({ url, baseUrl }) {
       if (url.startsWith("/")) {
         return `${baseUrl}${url}`;
       }
@@ -136,7 +139,7 @@ export const authOptions: NextAuthOptions = {
 export async function authPermission(permissionKey: PermissionKey) {
   const session = await getServerSession(authOptions);
 
-  if (!session || !session.user) {
+  if (!session?.user) {
     redirect("/login");
   }
 

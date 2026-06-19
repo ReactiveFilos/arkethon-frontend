@@ -1,6 +1,6 @@
 import type { Role } from "puedo";
 
-import { Admin } from "@/lib/validations/roles/admin";
+import type { Admin } from "@/lib/validations/roles/admin";
 
 export const adminRole: Role<Admin> = {
   id: "admin",
