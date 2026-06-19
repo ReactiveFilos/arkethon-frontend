@@ -1,0 +1,59 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
+  "extends": [
+    "ultracite"
+  ],
+  "linter": {
+    "rules": {
+      "performance": {
+        "noNamespaceImport": "off"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "useSemanticElements": "warn",
+        "noStaticElementInteractions": "warn",
+        "noNoninteractiveElementInteractions": "warn",
+        "useFocusableInteractive": "warn",
+        "useKeyWithClickEvents": "warn"
+      },
+      "style": {
+        "noMagicNumbers": "off",
+        "useBlockStatements": "off",
+        "noNonNullAssertion": "warn",
+        "useFragmentSyntax": "off",
+        "noNestedTernary": "warn",
+        "useDefaultSwitchClause": "warn"
+      },
+      "nursery": {
+        "noShadow": "off"
+      },
+      "suspicious": {
+        "noConsole": {
+          "level": "error",
+          "options": {
+            "allow": [
+              "error"
+            ]
+          }
+        },
+        "noUnknownAtRules": "warn",
+        "useIterableCallbackReturn": "warn",
+        "noDocumentCookie": "warn",
+        "noArrayIndexKey": "warn",
+        "noDoubleEquals": "warn",
+        "noExplicitAny": "warn",
+        "noEmptyBlockStatements": "warn"
+      },
+      "complexity": {
+        "noForEach": "warn",
+        "noExcessiveCognitiveComplexity": "warn",
+        "noVoid": "warn"
+      },
+      "correctness": {
+        "noNestedComponentDefinitions": "warn",
+        "useExhaustiveDependencies": "warn",
+        "noUnknownProperty": "warn"
+      }
+    }
+  }
+}
