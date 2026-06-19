@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { adminSchema } from "@/lib/validations/roles/admin";
+import { userSchema } from "@/lib/validations/roles/user";
 
-export const userTypeSchema = z.union([adminSchema]);
+export const userTypeSchema = z.union([userSchema]);
 
 export type UserType = z.infer<typeof userTypeSchema>;

@@ -141,13 +141,14 @@ export async function authPermission(permissionKey: PermissionKey) {
     return session;
   }
 
-  switch (session.user.arke_id) {
-    case "super_admin":
-    case "admin":
-      redirect("/");
-    default:
-      redirect("/login");
-  }
+  redirect("/");
+
+  // switch (session.user.arke_id) {
+  //   case "user":
+  //     redirect("/");
+  //   default:
+  //     redirect("/logout");
+  // }
 }
 
 const authInstance = NextAuth(authOptions);

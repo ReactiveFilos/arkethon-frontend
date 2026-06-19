@@ -30,9 +30,9 @@ const chartConfig = {
 export function RadarChartDots() {
   return (
     <Card className="border-none px-2 shadow-none">
-      <CardContent className="px-0 pb-0">
+      <CardContent className="px-2 pb-0">
         <ChartContainer
-          className="aspect-square max-w-2xs"
+          className="aspect-square max-h-72 w-full"
           config={chartConfig}
         >
           <RadarChart data={chartData}>

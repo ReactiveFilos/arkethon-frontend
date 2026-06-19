@@ -1,7 +1,6 @@
 import type { User } from "next-auth";
-
-import type { Admin } from "@/lib/validations/roles/admin";
 import type { SuperAdmin } from "@/lib/validations/roles/super-admin";
+import type { Admin } from "@/lib/validations/roles/user";
 import type { UserType } from "@/lib/validations/roles/users";
 
 export type UserSessionRole = Omit<User, "access_token" | "refresh_token">;

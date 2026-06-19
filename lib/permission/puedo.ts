@@ -1,8 +1,7 @@
 import type { User } from "next-auth";
 import { Puedo } from "puedo";
 
-import { adminRole } from "@/lib/permission/roles/admin";
-import { superAdminRole } from "@/lib/permission/roles/super-admin";
+import { userRole } from "@/lib/permission/roles/user";
 
 const permissions = {
   home: {
@@ -10,7 +9,7 @@ const permissions = {
   },
 };
 
-const puedoRoles = [superAdminRole, adminRole];
+const puedoRoles = [userRole];
 
 const puedo = new Puedo<User, typeof permissions>({
   accessorKey: "arke_id",

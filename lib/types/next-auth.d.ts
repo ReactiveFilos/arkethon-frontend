@@ -1,5 +1,5 @@
-import type { Admin } from "@/lib/validations/roles/admin";
 import type { SuperAdmin } from "@/lib/validations/roles/super-admin";
+import type { Admin } from "@/lib/validations/roles/user";
 
 type IUser = SuperAdmin | Admin | MasterSales | Sales | Reviewer | Agency;
 
