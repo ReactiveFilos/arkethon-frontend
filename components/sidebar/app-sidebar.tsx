@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, LogOutIcon, MapIcon, User2Icon } from "lucide-react";
+import { Edit, LogOutIcon, User2Icon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { RadarChartDots } from "@/components/radar-chart/radar-chart";
@@ -26,19 +26,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader className="gap-0 bg-background px-5 py-4">
-        <Typography variant="body-md">Arke Companion</Typography>
+        <Link href="/">
+          <Typography variant="body-md">Arke Companion</Typography>
+        </Link>
+        <Typography
+          className="font-mono text-gray-600 dark:text-gray-400"
+          variant="body-sm"
+        >
+          Empower your path with a best friend.
+        </Typography>
       </SidebarHeader>
       <SidebarContent className="gap-0 bg-background px-0 py-0">
         <div className="flex w-full flex-col gap-2 px-3 py-3.5">
-          <Button
-            className="h-auto w-full justify-start px-2 py-1"
-            disabled
-            variant="ghost"
-          >
-            <ButtonContent>
-              <MapIcon /> Roadmap
-            </ButtonContent>
-          </Button>
           <Link href="/cv">
             <Button
               className="h-auto w-full justify-start px-2 py-1"

@@ -1,4 +1,4 @@
-import { AppSidebarServer } from "@/components/sidebar/app-sidebar.server";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function SidebarLayout({
@@ -8,7 +8,7 @@ export default function SidebarLayout({
 }) {
   return (
     <SidebarProvider>
-      <AppSidebarServer />
+      <AppSidebar />
       <main className="flex-1">
         <div className="fixed top-0 z-10 flex max-h-14 min-h-14 w-full flex-1 items-center gap-5 bg-transparent px-3">
           <SidebarTrigger />

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import SessionWrapper from "@/components/auth/session-wrapper";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import QueryClientProvider from "@/lib/tanstack/client";
 
@@ -27,26 +26,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionWrapper>
-      <QueryClientProvider>
-        <html lang="en" suppressHydrationWarning>
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} font-medium antialiased`}
+    <QueryClientProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} font-medium antialiased`}
+        >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            disableTransitionOnChange
+            enableSystem
           >
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              disableTransitionOnChange
-              enableSystem
-            >
-              {process.env.NODE_ENV === "development" && (
-                <ReactQueryDevtools initialIsOpen={false} />
-              )}
-              {children}
-            </ThemeProvider>
-          </body>
-        </html>
-      </QueryClientProvider>
-    </SessionWrapper>
+            {process.env.NODE_ENV === "development" && (
+              <ReactQueryDevtools initialIsOpen={false} />
+            )}
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </QueryClientProvider>
   );
 }

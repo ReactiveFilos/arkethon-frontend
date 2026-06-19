@@ -1,50 +1,27 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import { Button, ButtonContent, ButtonLoader } from "@/components/ui/button";
 import { Field, FieldError } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
-import { network } from "@/lib/network";
-import { getQueryClient } from "@/lib/tanstack/client";
 
 const CVTextFormSchema = z.object({
   resume: z.string().min(1, "Resume text is required"),
 });
 
 export function CVTextForm() {
-  const session = useSession();
-  const userId = session.data?.user?.id;
-
-  const queryClient = getQueryClient();
-
   const form = useForm<z.infer<typeof CVTextFormSchema>>({
     resolver: zodResolver(CVTextFormSchema),
     defaultValues: {
-      resume: "",
+      resume: FAKE_TEXT,
     },
   });
 
-  async function onSubmit(values: z.infer<typeof CVTextFormSchema>) {
-    await editCVText({
-      userId: userId as string,
-      data: {
-        resume: values.resume,
-      },
-    });
+  function onSubmit(values: z.infer<typeof CVTextFormSchema>) {
+    form.reset(values);
   }
-
-  const { mutateAsync: editCVText, isPending } = useMutation({
-    ...network.auth.edit_user.mutationOptions(),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: network.auth.get_user.queryOptions().queryKey,
-      });
-    },
-  });
 
   return (
     <div className="squircle-4xl flex w-full items-center rounded-xl border border-input/40 bg-accent/35 px-4 py-3.5">
@@ -61,11 +38,7 @@ export function CVTextForm() {
               className="col-span-2 gap-2"
               data-invalid={fieldState.invalid}
             >
-              <Textarea
-                {...field}
-                disabled={isPending}
-                placeholder="Insert your CV text here..."
-              />
+              <Textarea {...field} placeholder="Insert your CV text here..." />
               {fieldState.invalid && (
                 <FieldError className="ml-0.5" errors={[fieldState.error]} />
               )}
@@ -74,9 +47,8 @@ export function CVTextForm() {
         />
         <Button
           className="col-span-2 mt-1"
-          disabled={isPending}
+          disabled={!form.formState.isDirty || form.formState.isSubmitting}
           form="create-cv"
-          loading={isPending}
           variant="default"
         >
           <ButtonLoader>Saving...</ButtonLoader>
@@ -86,3 +58,25 @@ export function CVTextForm() {
     </div>
   );
 }
+
+const FAKE_TEXT = `Full Stack Developer
+
+EXPERIENCE
+Senior Frontend Developer @ TechCorp, Milan (2023–Present)
+- Built scalable React/Next.js applications serving 200k+ users
+- Led migration from JavaScript to TypeScript, reducing runtime errors by 40%
+- Implemented CI/CD pipelines with GitHub Actions and Docker
+
+Full Stack Developer @ StartupXYZ, Remote (2021–2023)
+- Developed REST and GraphQL APIs with Node.js and PostgreSQL
+- Designed responsive UIs with Tailwind CSS and component libraries
+- Collaborated in agile team of 8 engineers
+
+EDUCATION
+BSc Computer Science — Politecnico di Milano (2018–2021)
+
+SKILLS
+TypeScript · React · Next.js · Node.js · PostgreSQL · Docker · Git · Testing (Jest, Playwright)
+
+LANGUAGES
+Italian (native) · English (fluent)`;

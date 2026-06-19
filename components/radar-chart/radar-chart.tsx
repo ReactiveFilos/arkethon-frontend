@@ -1,4 +1,5 @@
 "use client";
+
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,12 +13,12 @@ import {
 export const description = "A radar chart with dots";
 
 const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 273 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
+  { month: "TypeScript", desktop: 92 },
+  { month: "React", desktop: 88 },
+  { month: "Node.js", desktop: 75 },
+  { month: "CSS", desktop: 80 },
+  { month: "Testing", desktop: 65 },
+  { month: "DevOps", desktop: 58 },
 ];
 
 const chartConfig = {
