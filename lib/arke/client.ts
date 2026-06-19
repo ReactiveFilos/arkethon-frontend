@@ -47,10 +47,6 @@ export const client = new Client({
   },
 });
 
-export function getClient() {
-  return client;
-}
-
 export const unauthorizedClient = new Client({
   serverUrl: getEnvVar("ARKE_URL", "http://localhost:4000"),
   project: getEnvVar("ARKE_PROJECT_ID"),

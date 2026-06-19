@@ -1,10 +1,14 @@
+import { getServerSession } from "next-auth";
+
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { authPermission } from "@/lib/auth";
+import { authOptions } from "@/lib/arke/auth";
 
 export async function AppSidebarServer() {
-  const { isAuthenticated } = await authPermission("sidebar");
+  const session = await getServerSession(authOptions);
 
-  if (!isAuthenticated) return null;
+  if (!session?.user) {
+    return null;
+  }
 
   return <AppSidebar />;
 }

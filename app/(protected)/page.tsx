@@ -1,8 +1,7 @@
-import { SpacesView } from "@/components/spaces/spaces-view";
-import { authPermission } from "@/lib/auth";
+// import { authPermission } from "@/lib/arke/auth";
 
 export default async function Page() {
-  await authPermission();
+  // await authPermission("home.view");
 
-  return <SpacesView />;
+  return null;
 }

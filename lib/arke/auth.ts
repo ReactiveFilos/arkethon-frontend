@@ -9,7 +9,7 @@ import type { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { getEnvVar } from "@/hooks/use-runtime-env";
-import { getClient, unauthorizedClient } from "@/lib/arke/client";
+import { client, unauthorizedClient } from "@/lib/arke/client";
 import { fetchCurrentUser } from "@/lib/arke/user";
 import puedo, { type PermissionKey } from "@/lib/permission/puedo";
 
@@ -47,11 +47,6 @@ export const authOptions: NextAuthOptions = {
       },
       authorize: async (credentials) => {
         if (!credentials) return null;
-        const client = getClient();
-
-        if (credentials.magic_link) {
-          return await magicLogin(credentials.magic_link);
-        }
 
         if (credentials.email && credentials.password) {
           const res = await client.auth.signIn(
@@ -87,8 +82,7 @@ export const authOptions: NextAuthOptions = {
 
       try {
         return await checkTokenExpiration(token as JWT);
-      } catch (error) {
-        console.log("Error refreshing access_token", error);
+      } catch {
         token.error = "RefreshTokenError";
         return token;
       }
