@@ -1,6 +1,7 @@
 "use client";
 
 import { Edit, LogOutIcon, MapIcon, User2Icon } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { RadarChartDots } from "@/components/radar-chart/radar-chart";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
@@ -38,15 +39,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <MapIcon /> Roadmap
             </ButtonContent>
           </Button>
-          <Button
-            className="h-auto w-full justify-start px-2 py-1"
-            disabled
-            variant="ghost"
-          >
-            <ButtonContent>
-              <Edit /> CV
-            </ButtonContent>
-          </Button>
+          <Link href="/cv">
+            <Button
+              className="h-auto w-full justify-start px-2 py-1"
+              variant="ghost"
+            >
+              <ButtonContent>
+                <Edit /> CV
+              </ButtonContent>
+            </Button>
+          </Link>
         </div>
         <RadarChartDots />
       </SidebarContent>
