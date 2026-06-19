@@ -1,6 +1,11 @@
 "use client";
 
-import { Edit, LogOutIcon, User2Icon } from "lucide-react";
+import {
+  EditIcon,
+  HardDriveDownloadIcon,
+  LogOutIcon,
+  User2Icon,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { RadarChartDots } from "@/components/radar-chart/radar-chart";
@@ -38,13 +43,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent className="gap-0 bg-background px-0 py-0">
         <div className="flex w-full flex-col gap-2 px-3 py-3.5">
+          <Link href="/actions">
+            <Button
+              className="h-auto w-full justify-start px-2 py-1"
+              variant="ghost"
+            >
+              <ButtonContent>
+                <HardDriveDownloadIcon /> Tamagochi
+              </ButtonContent>
+            </Button>
+          </Link>
           <Link href="/cv">
             <Button
               className="h-auto w-full justify-start px-2 py-1"
               variant="ghost"
             >
               <ButtonContent>
-                <Edit /> CV
+                <EditIcon /> CV
               </ButtonContent>
             </Button>
           </Link>
